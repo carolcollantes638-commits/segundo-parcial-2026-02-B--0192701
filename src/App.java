@@ -6,7 +6,17 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
+        int n = leerValidarCantidad(scanner);
 
+        int[] tiempos = new int[n];
+
+        cargarTiempos(scanner, tiempos);
+
+        scanner.close();
+
+    }
+
+    
     public static int leerValidarCantidad(Scanner scanner) {
         int cantidad;
         do {
@@ -25,7 +35,7 @@ public class App {
 
         public static boolean esTiempoValido(int tiempo) {
         return tiempo >= 20 && tiempo <= 500;
-    } /
+    } 
 
     public static void cargarTiempos(Scanner scanner, int[] arreglo) {
         System.out.println("\n--- Ingreso de Tiempos de Respuesta ---");
@@ -74,8 +84,63 @@ public class App {
         }
         return contador;
     }
-
-
-
+    public static int contarMenoresQue(int[] arreglo, double limite) {
+        int contador = 0;
+        for (int i = 0; i < arreglo.length; i++) {
+            if (arreglo[i] < limite) {
+                contador++;
+            }
+        }
+        return contador;
     }
+
+    
+    public static double calcularPromedio(int suma, int totalElementos) {
+        if (totalElementos == 0) {
+            return 0.0;
+        }
+        return (double) suma / totalElementos;
+    }
+
+    
+    public static int buscarMenor(int[] arreglo) {
+        int menor = arreglo[0];
+        for (int i = 1; i < arreglo.length; i++) {
+            if (arreglo[i] < menor) {
+                menor = arreglo[i];
+            }
+        }
+        return menor;
+    }
+
+   
+    public static int buscarPrimeraPosicionMenor(int[] arreglo, int menor) {
+        for (int i = 0; i < arreglo.length; i++) {
+            if (arreglo[i] == menor) {
+                return i + 1; 
+            }
+        }
+        return -1;
+    }
+
+    public static void mostrarResumen(int[] arreglo, int cant20a200, int cantMayores200, int suma, double promedio, int menor, int cantMenoresPromedio, int primeraPosMenor) {
+       
+        System.out.println(" RESUMEN DE MONITOREO DE RED ");
+        
+        System.out.println("Listado de tiempos registrados:");
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.println("  Medición " + (i + 1) + ": " + arreglo[i] + " ms");
+        }
+        
+        System.out.println("1. Mediciones entre 20 y 200 ms: " + cant20a200);
+        System.out.println("2. Mediciones superiores a 200 ms: " + cantMayores200);
+        System.out.println("3. Tiempo total acumulado: " + suma + " ms");
+        System.out.println("4. Promedio de tiempo de respuesta: " + promedio + " ms");
+        System.out.println("5. Menor tiempo registrado: " + menor + " ms");
+        System.out.println("6. Mediciones con tiempo inferior al promedio: " + cantMenoresPromedio);
+        System.out.println("7. Primera aparición del menor tiempo: Medición número " + primeraPosMenor);
+       
+ 
+    }
+} 
 }
