@@ -103,3 +103,7 @@ Para este caso:
 El programa también será probado con otros valores, incluyendo datos inválidos y valores repetidos.
 
 ---
+#Entradas 
+- Cantidad de mediciones 
+- Tiempo 
+- 
